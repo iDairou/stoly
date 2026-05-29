@@ -4,11 +4,12 @@
 //  → Twój projekt → Ustawienia projektu → Twoje aplikacje
 // ════════════════════════════════════════════════════════
 export const firebaseConfig = {
-  apiKey:            "WKLEJ_API_KEY",
-  authDomain:        "WKLEJ_PROJECT_ID.firebaseapp.com",
-  databaseURL:       "https://WKLEJ_PROJECT_ID-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId:         "WKLEJ_PROJECT_ID",
-  storageBucket:     "WKLEJ_PROJECT_ID.appspot.com",
-  messagingSenderId: "WKLEJ_SENDER_ID",
-  appId:             "WKLEJ_APP_ID",
+	apiKey: "AIzaSyCZ9TZA-N9_65H2DSsmHgqOmzrqRXPQ1Js",
+	authDomain: "stoly-9ac14.firebaseapp.com",
+	databaseURL:
+		"https://stoly-9ac14-default-rtdb.europe-west1.firebasedatabase.app",
+	projectId: "stoly-9ac14",
+	storageBucket: "stoly-9ac14.firebasestorage.app",
+	messagingSenderId: "840090827483",
+	appId: "1:840090827483:web:fbe0b65c590c8dc8bfeafe",
 };
