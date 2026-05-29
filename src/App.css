@@ -91,22 +91,31 @@
   box-shadow: 0 4px 24px rgba(0,0,0,0.10);
 }
 
-.hall-top {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 18px;
-}
-
 .hall-main {
   display: flex;
-  gap: 12px;
+  gap: 22px;
   align-items: flex-start;
+  justify-content: center; /* grupa wyśrodkowana → stoły boczne bliżej honorowego */
+}
+
+/* Kolumna centralna: Honorowy na górze, stoły poniżej.
+   Bez flex:1 — kurczy się do szerokości stołów, dzięki czemu stoły L
+   (lewy/prawy) przylegają bliżej do stołu honorowego. */
+.center-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.honorowy-row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 64px; /* większy odstęp → stoły 1,2,3 niżej */
 }
 
 .center-area {
-  flex: 1;
   display: flex;
-  gap: 10px;
+  gap: 36px;
   justify-content: center;
 }
 
@@ -306,3 +315,51 @@
 .btn-save   { background: #43a047; color: #fff; flex: 1; }
 .btn-delete { background: #e53935; color: #fff; }
 .btn-cancel { background: #ede8e0; color: #555; }
+
+/* ── L-shaped tables (geometria liczona w JS, render SVG + absolutne miejsca) ── */
+/*
+ * Stół L = jeden ciągły blat w kształcie L (SVG polygon) + dwa odcinki "blatu"
+ * (poziomy i pionowy prostokąt), które NACHODZĄ na siebie w narożniku → ciągłe L.
+ * Miejsca (.seat) są pozycjonowane absolutnie PO OBU STRONACH blatu, nigdy na nim.
+ */
+
+.l-table {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.l-svg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/* Blat (korpus) stołu w kształcie L */
+.l-body {
+  fill: #fbf4e7;
+  stroke: #c8963e;
+  stroke-width: 2;
+}
+
+/* Widoczny pasek powierzchni (blat) — ciemniejszy niż korpus */
+.l-surf {
+  fill: rgba(200, 150, 62, 0.4);
+}
+
+/* Nazwa stołu — wyśrodkowana nad poziomym ramieniem */
+.l-label {
+  position: absolute;
+  top: 4px;
+  left: 0;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: #8a5a1a;
+  z-index: 2;
+  pointer-events: none;
+  white-space: nowrap;
+}
+.l-label span { font-weight: 400; opacity: 0.8; }
+
+/* Miejsca w stole L są pozycjonowane absolutnie i muszą być nad SVG */
+.l-table .seat { z-index: 1; }
